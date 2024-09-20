@@ -1,3 +1,4 @@
-public class Adotante {
+package ifsp.bra.patitas.model;
+public class Adotante extends Usuario{
     
 }
