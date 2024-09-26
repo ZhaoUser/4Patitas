@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifsp.bra.patitas.model.Adotante;
 
 @RestController
-@RequestMapping("/api/4Patitas/adotante/")
+@RequestMapping("/api/4Patitas/adotante")
 public class AdotanteController {
     
     private List<Adotante> listaAdotante = new ArrayList<>();

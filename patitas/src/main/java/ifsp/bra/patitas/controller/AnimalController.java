@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifsp.bra.patitas.model.Animal;
 
 @RestController
-@RequestMapping("/api/4Patitas/animal/")
+@RequestMapping("/api/4Patitas/animal")
 public class AnimalController {
     private List<Animal> listaAnimal = new ArrayList<>();
 

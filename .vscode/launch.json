@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PatitasAPI<patitas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ifsp.bra.patitas.PatitasAPI",
+            "projectName": "patitas",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

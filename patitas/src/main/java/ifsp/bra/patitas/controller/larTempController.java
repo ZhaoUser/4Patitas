@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifsp.bra.patitas.model.larTemp;
 
 @RestController
-@RequestMapping("/api/4Patitas/larTemp/")
+@RequestMapping("/api/4Patitas/larTemp")
 public class larTempController {
     
     
