@@ -55,6 +55,7 @@ public class AnimalController {
             animalExistente.setIdade(novoAnimal.getIdade());
             animalExistente.setRaca(novoAnimal.getRaca());
             animalExistente.setSexo(novoAnimal.getSexo());
+            animalExistente.setEspecie(novoAnimal.getEspecie());
             animalExistente.setPorte(novoAnimal.getPorte());
             animalExistente.setDesc(novoAnimal.getDesc());
             animalExistente.setDisponivel(novoAnimal.isDisponivel());
