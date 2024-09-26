@@ -53,7 +53,6 @@ public class AdotanteController {
 
         if (AdotanteExistente != null) {
             AdotanteExistente.setNome(novoAdotante.getNome());
-            AdotanteExistente.setNome(novoAdotante.getNome());
             AdotanteExistente.setEmail(novoAdotante.getEmail());
             AdotanteExistente.setTelefone(novoAdotante.getTelefone());
             AdotanteExistente.setEndereco(novoAdotante.getEndereco());

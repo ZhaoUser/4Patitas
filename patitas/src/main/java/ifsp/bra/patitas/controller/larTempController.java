@@ -54,7 +54,6 @@ public class larTempController {
 
         if (larTempExistente != null) {
             larTempExistente.setNome(novolarTemp.getNome());
-            larTempExistente.setNome(novolarTemp.getNome());
             larTempExistente.setEmail(novolarTemp.getEmail());
             larTempExistente.setTelefone(novolarTemp.getTelefone());
             larTempExistente.setEndereco(novolarTemp.getEndereco());
