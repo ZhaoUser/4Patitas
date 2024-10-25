@@ -1,7 +1,12 @@
 package ifsp.bra.patitas.model;
-public class Adotante extends Usuario{
+import jakarta.persistence.Entity;
 
+@Entity
+public class Adotante extends Usuario{
     private String cpf;
+    public Adotante(){
+
+    }
 
     public Adotante(int id, String nome, String email, String telefone, String endereco, String desc, String cpf) {
         super(id, nome, email, telefone, endereco, desc);

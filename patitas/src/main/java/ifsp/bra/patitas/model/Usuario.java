@@ -8,6 +8,10 @@ public abstract class Usuario {
     private String endereco;
     private String desc;
     
+    public Usuario(){
+
+    }
+    
     public Usuario(int id, String nome, String email, String telefone, String endereco, String desc) {
         this.id = id;
         this.nome = nome;

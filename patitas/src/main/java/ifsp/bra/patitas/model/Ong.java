@@ -1,9 +1,15 @@
 package ifsp.bra.patitas.model;
+import jakarta.persistence.Entity;
 
+@Entity
 public class Ong extends Usuario{
     
     private String cnpj;
     private String pix;
+
+    public Ong(){
+
+    }
 
     public Ong(int id, String nome, String email, String telefone, String endereco, String desc, String cnpj,
             String pix) {

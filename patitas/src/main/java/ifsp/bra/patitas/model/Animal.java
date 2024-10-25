@@ -1,5 +1,7 @@
 package ifsp.bra.patitas.model;
+import jakarta.persistence.Entity;
 
+@Entity
 public class Animal {
     private int id_animal;
     private String nome;
