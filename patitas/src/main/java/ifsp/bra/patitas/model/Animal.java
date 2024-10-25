@@ -1,8 +1,12 @@
 package ifsp.bra.patitas.model;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Animal {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_animal;
     private String nome;
     private int idade;
