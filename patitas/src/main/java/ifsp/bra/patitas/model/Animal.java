@@ -1,34 +1,40 @@
 package ifsp.bra.patitas.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Animal {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_animal;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private int idade;
     private String raca;
     private String sexo;
     private String especie;
     private String porte;
-    private String desc;
+    private String description;
     private boolean disponivel;
 
     public Animal(){}
 
-    public Animal(Long id_animal, String nome, int idade, String raca, String sexo, String especie, String porte, String desc,
+    public Animal(Long id, String nome, int idade, String raca, String sexo, String especie, String porte, String description,
             boolean disponivel) {
-        this.id_animal = id_animal;
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.raca = raca;
         this.sexo = sexo;
         this.especie = especie;
         this.porte = porte;
-        this.desc = desc;
+        this.description = description;
         this.disponivel = disponivel;
     }
 
@@ -41,7 +47,7 @@ public class Animal {
 
 
     public void setNome(String nome) {
-        this.nome = nome;ks
+        this.nome = nome;
     }
 
 
@@ -95,13 +101,13 @@ public class Animal {
     }
 
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
@@ -114,12 +120,12 @@ public class Animal {
         this.disponivel = disponivel;
     }
 
-    public Long getId_animal() {
-        return id_animal;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_animal(Long id_animal) {
-        this.id_animal = id_animal;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     

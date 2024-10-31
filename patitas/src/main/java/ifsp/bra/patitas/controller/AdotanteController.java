@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import ifsp.bra.patitas.model.Adotante;
-import ifsp.bra.patitas.repository.AdotanteRepository;
+import ifsp.bra.patitas.repository.adotanteRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/adotante")
 public class AdotanteController {
 
     @Autowired
-    AdotanteRepository adRepository;
+    adotanteRepository adRepository;
 
     // GET: Lista de Adotante
     @GetMapping
@@ -45,7 +45,7 @@ public class AdotanteController {
                     adotanteExistente.setEmail(novoAdotante.getEmail());
                     adotanteExistente.setTelefone(novoAdotante.getTelefone());
                     adotanteExistente.setEndereco(novoAdotante.getEndereco());
-                    adotanteExistente.setDesc(novoAdotante.getDesc());
+                    adotanteExistente.setDescription(novoAdotante.getDescription());
                     adotanteExistente.setCpf(novoAdotante.getCpf());
                     return adRepository.save(adotanteExistente);
                 })

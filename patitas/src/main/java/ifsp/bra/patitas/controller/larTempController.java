@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import ifsp.bra.patitas.model.LarTemp;
-import ifsp.bra.patitas.repository.LarTempRepository;
+import ifsp.bra.patitas.model.larTemp;
+import ifsp.bra.patitas.repository.larTempRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/larTemp")
-public class LarTempController {
+public class larTempController {
 
     @Autowired
-    LarTempRepository larRepository;
+    larTempRepository larRepository;
 
     // GET: Lista de larTemp
     @GetMapping
-    public List<LarTemp> findAllLarTemp() {
+    public List<larTemp> findAlllarTemp() {
         return StreamSupport.stream(larRepository
                 .findAll()
                 .spliterator(), false)
@@ -26,28 +26,28 @@ public class LarTempController {
 
     // GET: Recupera um larTemp específico por ID
     @GetMapping("/{id}")
-    public LarTemp findLarTempById(@PathVariable int id) {
+    public larTemp findlarTempById(@PathVariable Long id) {
         return larRepository.findById(id).orElse(null);
     }
 
     // POST: Cria um novo larTemp
     @PostMapping
-    public LarTemp createLarTemp(@RequestBody LarTemp larTemp) {
+    public larTemp createlarTemp(@RequestBody larTemp larTemp) {
         return larRepository.save(larTemp);
     }
 
     // PUT: Atualiza um larTemp existente
     @PutMapping("/{id}")
-    public LarTemp updateLarTemp(@PathVariable int id, @RequestBody LarTemp novoLarTemp) {
+    public larTemp updatelarTemp(@PathVariable Long id, @RequestBody larTemp novolarTemp) {
         return larRepository.findById(id)
                 .map(larTempExistente -> {
-                    larTempExistente.setNome(novoLarTemp.getNome());
-                    larTempExistente.setEmail(novoLarTemp.getEmail());
-                    larTempExistente.setTelefone(novoLarTemp.getTelefone());
-                    larTempExistente.setEndereco(novoLarTemp.getEndereco());
-                    larTempExistente.setDesc(novoLarTemp.getDesc());
-                    larTempExistente.setPeriodo(novoLarTemp.getPeriodo());
-                    larTempExistente.setCpf(novoLarTemp.getCpf());
+                    larTempExistente.setNome(novolarTemp.getNome());
+                    larTempExistente.setEmail(novolarTemp.getEmail());
+                    larTempExistente.setTelefone(novolarTemp.getTelefone());
+                    larTempExistente.setEndereco(novolarTemp.getEndereco());
+                    larTempExistente.setDescription(novolarTemp.getDescription());
+                    larTempExistente.setPeriodo(novolarTemp.getPeriodo());
+                    larTempExistente.setCpf(novolarTemp.getCpf());
                     return larRepository.save(larTempExistente);
                 })
                 .orElse(null);
@@ -55,7 +55,7 @@ public class LarTempController {
 
     // DELETE: Deleta um larTemp
     @DeleteMapping("/{id}")
-    public void deleteLarTemp(@PathVariable int id) {
+    public void deletelarTemp(@PathVariable Long id) {
         larRepository.deleteById(id);
     }
 }

@@ -1,4 +1,5 @@
 package ifsp.bra.patitas.model;
+
 import jakarta.persistence.Entity;
 
 @Entity
@@ -9,15 +10,12 @@ public class larTemp extends Usuario{
     
     public larTemp(){}
 
-    public larTemp(Long id, String nome, String email, String telefone, String endereco, String desc, String periodo,
+    public larTemp(Long id, String nome, String email, String telefone, String endereco, String description, String periodo,
             String cpf) {
-        super(id, nome, email, telefone, endereco, desc);
+        super(id, nome, email, telefone, endereco, description);
         this.periodo = periodo;
         this.cpf = cpf;
     }
-
-    @OneToMany(mappedBy = "larTemp", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Adocao> listaAdocao= new ArrayList<>();
 
     public String getPeriodo() {
         return periodo;

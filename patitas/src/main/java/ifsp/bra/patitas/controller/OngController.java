@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import ifsp.bra.patitas.model.Ong;
-import ifsp.bra.patitas.repository.OngRepository;
+import ifsp.bra.patitas.repository.ongRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/ong")
 public class OngController {
 
     @Autowired
-    OngRepository ongRepository;
+    ongRepository ongRepository;
 
     // GET: Lista de Ong
     @GetMapping
@@ -26,7 +26,7 @@ public class OngController {
 
     // GET: Recupera um Ong específico por ID
     @GetMapping("/{id}")
-    public Ong findOngById(@PathVariable int id) {
+    public Ong findOngById(@PathVariable Long id) {
         return ongRepository.findById(id).orElse(null);
     }
 
@@ -38,14 +38,14 @@ public class OngController {
 
     // PUT: Atualiza um Ong existente
     @PutMapping("/{id}")
-    public Ong updateOng(@PathVariable int id, @RequestBody Ong novoOng) {
+    public Ong updateOng(@PathVariable Long id, @RequestBody Ong novoOng) {
         return ongRepository.findById(id)
                 .map(ongExistente -> {
                     ongExistente.setNome(novoOng.getNome());
                     ongExistente.setEmail(novoOng.getEmail());
                     ongExistente.setTelefone(novoOng.getTelefone());
                     ongExistente.setEndereco(novoOng.getEndereco());
-                    ongExistente.setDesc(novoOng.getDesc());
+                    ongExistente.setDescription(novoOng.getDescription());
                     ongExistente.setCnpj(novoOng.getCnpj());
                     ongExistente.setPix(novoOng.getPix());
                     return ongRepository.save(ongExistente);
@@ -55,7 +55,7 @@ public class OngController {
 
     // DELETE: Deleta um Ong
     @DeleteMapping("/{id}")
-    public void deleteOng(@PathVariable int id) {
+    public void deleteOng(@PathVariable Long id) {
         ongRepository.deleteById(id);
     }
 }

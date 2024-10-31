@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import ifsp.bra.patitas.model.Animal;
-import ifsp.bra.patitas.repository.AnimalRepository;
+import ifsp.bra.patitas.repository.animalRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/animal")
 public class AnimalController {
 
     @Autowired
-    AnimalRepository anRepository;
+    animalRepository anRepository;
 
     // GET: Lista de animal
     @GetMapping
@@ -26,7 +26,7 @@ public class AnimalController {
 
     // GET: Recupera um animal específico por ID
     @GetMapping("/{id_animal}")
-    public Animal findAnimalById(@PathVariable int id_animal) {
+    public Animal findAnimalById(@PathVariable Long id_animal) {
         return anRepository.findById(id_animal).orElse(null);
     }
 
@@ -38,7 +38,7 @@ public class AnimalController {
 
     // PUT: Atualiza um Animal existente
     @PutMapping("/{id_animal}")
-    public Animal updateAnimal(@PathVariable int id_animal, @RequestBody Animal novoAnimal) {
+    public Animal updateAnimal(@PathVariable Long id_animal, @RequestBody Animal novoAnimal) {
         return anRepository.findById(id_animal)
                 .map(animalExistente -> {
                     animalExistente.setNome(novoAnimal.getNome());
@@ -47,7 +47,7 @@ public class AnimalController {
                     animalExistente.setSexo(novoAnimal.getSexo());
                     animalExistente.setEspecie(novoAnimal.getEspecie());
                     animalExistente.setPorte(novoAnimal.getPorte());
-                    animalExistente.setDesc(novoAnimal.getDesc());
+                    animalExistente.setDescription(novoAnimal.getDescription());
                     animalExistente.setDisponivel(novoAnimal.isDisponivel());
                     return anRepository.save(animalExistente);
                 })
@@ -56,7 +56,7 @@ public class AnimalController {
 
     // DELETE: Deleta um Animal
     @DeleteMapping("/{id_animal}")
-    public void deleteAnimal(@PathVariable int id_animal) {
+    public void deleteAnimal(@PathVariable Long id_animal) {
         anRepository.deleteById(id_animal);
     }
 }

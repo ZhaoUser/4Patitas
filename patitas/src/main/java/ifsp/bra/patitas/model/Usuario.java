@@ -7,23 +7,23 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String telefone;
     private String endereco;
-    private String desc;
+    private String description;
     
     public Usuario(){}
     
-    public Usuario(Long id, String nome, String email, String telefone, String endereco, String desc) {
+    public Usuario(Long id, String nome, String email, String telefone, String endereco, String description) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.desc = desc;
+        this.description = description;
     }
 
     
@@ -59,12 +59,12 @@ public abstract class Usuario {
         this.endereco = endereco;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 

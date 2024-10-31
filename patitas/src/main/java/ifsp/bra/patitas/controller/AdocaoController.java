@@ -1,16 +1,16 @@
 package ifsp.bra.patitas.controller;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ifsp.bra.patitas.model.Adocao;
+import ifsp.bra.patitas.model.Adotante;
 import ifsp.bra.patitas.model.Animal;
 import ifsp.bra.patitas.repository.adocaoRepository;
 import ifsp.bra.patitas.repository.adotanteRepository;
@@ -26,47 +26,60 @@ public class AdocaoController {
 
     @Autowired
     public AdocaoController(adocaoRepository adocaoRepository,
-                                     animalRepository animalRepository,
-                                     adotanteRepository adotanteRepository) {
+                            animalRepository animalRepository,
+                            adotanteRepository adotanteRepository) {
         this.adocaoRepository = adocaoRepository;
         this.animalRepository = animalRepository;
         this.adotanteRepository = adotanteRepository;
     }
 
     @PostMapping
-    public ResponseEntity<AdoptionRequest> createAdoptionRequest(@RequestBody Map<String, Long> requestIds) {
-        Long id_animal = requestIds.get("id_animal");
-        Long id_adotante = requestIds.get("id_adotante");
+    public ResponseEntity<Adocao> createAdocao(@RequestBody Map<String, Long> requestIds) {
+        Long animal_id = requestIds.get("animal_id");
+        Long adotante_id = requestIds.get("adotante_id");
     
-        Animal animal = animalRepository.findById(id_animal)
-                .orElseThrow(() -> new ResourceNotFoundException("Animal not found with ID " + id_animal));
+        Animal animal = animalRepository.findById(animal_id)
+                .orElseThrow();
         
-        FosterUser fosterUser = fosterUserRepository.findById(id_adotante)
-                .orElseThrow(() -> new ResourceNotFoundException("FosterUser not found with ID " + id_adotante));
+        Adotante adotante = adotanteRepository.findById(adotante_id)
+                .orElseThrow();
     
-        // Directly create and set up the AdoptionRequest entity
-        AdoptionRequest adoptionRequest = new AdoptionRequest();
-        adoptionRequest.setAnimal(animal);
-        adoptionRequest.setFosterUser(fosterUser);
-        adoptionRequest.setStatus("Pending");
-        adoptionRequest.setRequestDate(LocalDate.now());
-    
-        // Save and return the new adoption request
-        AdoptionRequest savedRequest = adoptionRequestRepository.save(adoptionRequest);
-        return ResponseEntity.ok(savedRequest);
+        Adocao adocao = new Adocao();
+        adocao.setAnimal(animal);
+        adocao.setAdotante(adotante);
+        adocao.setStatus("Pending");
+        adocao.setRequestDate(LocalDate.now());
+
+        Adocao pedidoAdocao = adocaoRepository.save(adocao);
+        return ResponseEntity.ok(pedidoAdocao);
     }
     
-    // Retrieve adoption requests by foster user ID
-    @GetMapping("/adotante/{id_adotante}")
-    public List<Adocao> getRequestsByAdotante(@PathVariable Long id_adotante) {
-        return adocaoRepository.findByAdontanteId(id_adotante);
+    @GetMapping("/adotante/{adotante_id}")
+    public List<Adocao> getRequestsByAdotante(@PathVariable Long adotante_id) {
+        return adocaoRepository.findByAdotanteId(adotante_id);
     }
 
-    // Retrieve adoption requests by animal ID
-    @GetMapping("/animal/{id_animal}")
-    public List<Adocao> getRequestsByAnimal(@PathVariable Long id_animal) {
-        return adocaoRepository.findByid_animal(id_animal);
+    @GetMapping("/animal/{animal_id}")
+    public List<Adocao> getRequestsByAnimal(@PathVariable Long animal_id) {
+        return adocaoRepository.findByAnimalId(animal_id);
     }
 
-    // Additional methods to update or delete requests if needed
+    @PutMapping("/{id}")
+    public Adocao updateAdocao(@PathVariable Long id, @RequestBody Adocao novoAdocao) {
+        return adocaoRepository.findById(id)
+                .map(adocaoExistente -> {
+                    adocaoExistente.setAnimal(novoAdocao.getAnimal());
+                    adocaoExistente.setAdotante(novoAdocao.getAdotante());
+                    adocaoExistente.setStatus(novoAdocao.getStatus());
+                    adocaoExistente.setRequestDate(novoAdocao.getRequestDate());
+                    return adocaoRepository.save(adocaoExistente);
+                })
+                .orElse(null); 
+    }
+    
+
+    @DeleteMapping("/{id}")
+    public void deleteAdocao(@PathVariable Long id) {
+        adocaoRepository.deleteById(id);
+    }
 }

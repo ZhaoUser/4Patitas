@@ -1,4 +1,5 @@
 package ifsp.bra.patitas.model;
+
 import jakarta.persistence.Entity;
 
 @Entity
@@ -9,16 +10,13 @@ public class Ong extends Usuario{
 
     public Ong(){}
 
-    public Ong(Long id, String nome, String email, String telefone, String endereco, String desc, String cnpj,
+    public Ong(Long id, String nome, String email, String telefone, String endereco, String description, String cnpj,
             String pix) {
-        super(id, nome, email, telefone, endereco, desc);
+        super(id, nome, email, telefone, endereco, description);
         this.cnpj = cnpj;
         this.pix = pix;
     }
-
-    @OneToMany(mappedBy = "ong", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Adocao> listaAdocao= new ArrayList<>();
-
+    
     public String getCnpj() {
         return cnpj;
     }
