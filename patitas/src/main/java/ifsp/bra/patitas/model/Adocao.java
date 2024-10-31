@@ -11,10 +11,24 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Adocao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Atributos
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String status;
+    private LocalDate requestDate;
 
+    //Construtores
+    public Adocao(Long id, Animal animal, Adotante adotante, String status, LocalDate requestDate) {
+        this.id = id;
+        this.animal = animal;
+        this.adotante = adotante;
+        this.status = status;
+        this.requestDate = requestDate;
+    }
+    public Adocao() {}
+
+    //Cardinalidade Hibernate
     @ManyToOne
     @JoinColumn(name = "animal_id")
     private Animal animal;
@@ -23,9 +37,7 @@ public class Adocao {
     @JoinColumn(name = "adotante_id")
     private Adotante adotante;
 
-    private String status;
-    private LocalDate requestDate;
-
+    //Getters e Setters
     public Long getId() {
         return id;
     }
@@ -56,14 +68,5 @@ public class Adocao {
     public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
     }
-    
-    public Adocao(Long id, Animal animal, Adotante adotante, String status, LocalDate requestDate) {
-        this.id = id;
-        this.animal = animal;
-        this.adotante = adotante;
-        this.status = status;
-        this.requestDate = requestDate;
-    }
-    public Adocao() {}
     
 }

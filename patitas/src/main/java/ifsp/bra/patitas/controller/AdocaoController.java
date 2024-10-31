@@ -3,11 +3,17 @@ package ifsp.bra.patitas.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import ifsp.bra.patitas.model.Adocao;
 import ifsp.bra.patitas.model.Adotante;
@@ -20,6 +26,7 @@ import ifsp.bra.patitas.repository.animalRepository;
 @RequestMapping("/adocao")
 public class AdocaoController {
 
+    //Repositorios Utilizados
     private final adocaoRepository adocaoRepository;
     private final animalRepository animalRepository;
     private final adotanteRepository adotanteRepository;
@@ -74,7 +81,7 @@ public class AdocaoController {
                     adocaoExistente.setRequestDate(novoAdocao.getRequestDate());
                     return adocaoRepository.save(adocaoExistente);
                 })
-                .orElse(null); 
+                .orElse(null);
     }
     
 

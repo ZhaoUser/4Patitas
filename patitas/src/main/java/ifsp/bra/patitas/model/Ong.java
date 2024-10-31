@@ -1,22 +1,27 @@
 package ifsp.bra.patitas.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 
 @Entity
-public class Ong extends Usuario{
+public class Ong extends Dono{
     
+    //Atributos
     private String cnpj;
     private String pix;
 
-    public Ong(){}
+    //Construtores
+    public Ong() {}
 
-    public Ong(Long id, String nome, String email, String telefone, String endereco, String description, String cnpj,
-            String pix) {
-        super(id, nome, email, telefone, endereco, description);
+    public Ong(Long id, String nome, String email, String telefone, String endereco, String description,
+            List<Animal> listaAnimais, String cnpj, String pix) {
+        super(id, nome, email, telefone, endereco, description, listaAnimais);
         this.cnpj = cnpj;
         this.pix = pix;
     }
-    
+
+    //Getters e Setters
     public String getCnpj() {
         return cnpj;
     }
@@ -32,6 +37,5 @@ public class Ong extends Usuario{
     public void setPix(String pix) {
         this.pix = pix;
     }
-    
     
 }

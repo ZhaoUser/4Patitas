@@ -1,10 +1,19 @@
 package ifsp.bra.patitas.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import ifsp.bra.patitas.model.Ong;
 import ifsp.bra.patitas.repository.ongRepository;
 
@@ -48,6 +57,7 @@ public class OngController {
                     ongExistente.setDescription(novoOng.getDescription());
                     ongExistente.setCnpj(novoOng.getCnpj());
                     ongExistente.setPix(novoOng.getPix());
+                    ongExistente.setListaAnimais(novoOng.getListaAnimais());
                     return ongRepository.save(ongExistente);
                 })
                 .orElse(null);

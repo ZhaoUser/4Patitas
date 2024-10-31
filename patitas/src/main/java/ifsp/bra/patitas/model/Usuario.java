@@ -77,5 +77,4 @@ public abstract class Usuario {
         this.id = id;
     }
 
-    
 }
