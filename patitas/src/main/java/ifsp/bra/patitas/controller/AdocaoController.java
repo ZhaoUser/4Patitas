@@ -17,7 +17,7 @@ import ifsp.bra.patitas.repository.adotanteRepository;
 import ifsp.bra.patitas.repository.animalRepository;
 
 @RestController
-@RequestMapping("/Adocao")
+@RequestMapping("/adocao")
 public class AdocaoController {
 
     private final adocaoRepository adocaoRepository;
@@ -33,35 +33,39 @@ public class AdocaoController {
         this.adotanteRepository = adotanteRepository;
     }
 
-    // Create a new adoption request
     @PostMapping
-    public ResponseEntity<Adocao> createAdocao(@RequestBody AdocaoDTO dto) {
-        Animal animal = animalRepository.findById(dto.getAnimalId())
-                .orElseThrow(() -> new ResourceNotFoundException("Animal not found with ID " + dto.getAnimalId()));
+    public ResponseEntity<AdoptionRequest> createAdoptionRequest(@RequestBody Map<String, Long> requestIds) {
+        Long id_animal = requestIds.get("id_animal");
+        Long id_adotante = requestIds.get("id_adotante");
+    
+        Animal animal = animalRepository.findById(id_animal)
+                .orElseThrow(() -> new ResourceNotFoundException("Animal not found with ID " + id_animal));
         
-        FosterUser fosterUser = adotanteRepository.findById(dto.getFosterUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("FosterUser not found with ID " + dto.getFosterUserId()));
-        
-        Adocao Adocao = new Adocao();
-        Adocao.setAnimal(animal);
-        Adocao.setFosterUser(fosterUser);
-        Adocao.setStatus("Pending");
-        Adocao.setRequestDate(LocalDate.now());
-
-        Adocao savedRequest = adocaoRepository.save(Adocao);
+        FosterUser fosterUser = fosterUserRepository.findById(id_adotante)
+                .orElseThrow(() -> new ResourceNotFoundException("FosterUser not found with ID " + id_adotante));
+    
+        // Directly create and set up the AdoptionRequest entity
+        AdoptionRequest adoptionRequest = new AdoptionRequest();
+        adoptionRequest.setAnimal(animal);
+        adoptionRequest.setFosterUser(fosterUser);
+        adoptionRequest.setStatus("Pending");
+        adoptionRequest.setRequestDate(LocalDate.now());
+    
+        // Save and return the new adoption request
+        AdoptionRequest savedRequest = adoptionRequestRepository.save(adoptionRequest);
         return ResponseEntity.ok(savedRequest);
     }
-
+    
     // Retrieve adoption requests by foster user ID
-    @GetMapping("/fosterUser/{fosterUserId}")
-    public List<Adocao> getRequestsByFosterUser(@PathVariable Long fosterUserId) {
-        return adocaoRepository.findByAdontanteId(fosterUserId);
+    @GetMapping("/adotante/{id_adotante}")
+    public List<Adocao> getRequestsByAdotante(@PathVariable Long id_adotante) {
+        return adocaoRepository.findByAdontanteId(id_adotante);
     }
 
     // Retrieve adoption requests by animal ID
-    @GetMapping("/animal/{animalId}")
-    public List<Adocao> getRequestsByAnimal(@PathVariable Long animalId) {
-        return adocaoRepository.findByAnimalId(animalId);
+    @GetMapping("/animal/{id_animal}")
+    public List<Adocao> getRequestsByAnimal(@PathVariable Long id_animal) {
+        return adocaoRepository.findByid_animal(id_animal);
     }
 
     // Additional methods to update or delete requests if needed

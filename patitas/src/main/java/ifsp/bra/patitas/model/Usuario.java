@@ -15,9 +15,7 @@ public abstract class Usuario {
     private String endereco;
     private String desc;
     
-    public Usuario(){
-
-    }
+    public Usuario(){}
     
     public Usuario(Long id, String nome, String email, String telefone, String endereco, String desc) {
         this.id = id;

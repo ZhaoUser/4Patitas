@@ -17,9 +17,7 @@ public class Animal {
     private String desc;
     private boolean disponivel;
 
-    public Animal(){
-
-    }
+    public Animal(){}
 
     public Animal(Long id_animal, String nome, int idade, String raca, String sexo, String especie, String porte, String desc,
             boolean disponivel) {
@@ -34,6 +32,8 @@ public class Animal {
         this.disponivel = disponivel;
     }
 
+    @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Adocao> listaAdocao= new ArrayList<>();
 
     public String getNome() {
         return nome;
@@ -41,7 +41,7 @@ public class Animal {
 
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome;ks
     }
 
 

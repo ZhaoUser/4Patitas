@@ -1,74 +1,62 @@
 package ifsp.bra.patitas.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import ifsp.bra.patitas.model.Animal;
-import ifsp.bra.patitas.repository.animalRepository;
+import ifsp.bra.patitas.repository.AnimalRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/animal")
 public class AnimalController {
-    private List<Animal> listaAnimal = new ArrayList<>();
 
     @Autowired
-    animalRepository anRepository;
+    AnimalRepository anRepository;
 
     // GET: Lista de animal
     @GetMapping
-    public List<Animal> listarAnimal() {
-        return listaAnimal;
+    public List<Animal> findAllAnimals() {
+        return StreamSupport.stream(anRepository
+                .findAll()
+                .spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     // GET: Recupera um animal específico por ID
     @GetMapping("/{id_animal}")
-    public Animal findByAnimalId(@PathVariable int id_animal) {
-        return listaAnimal.stream()
-                .filter(animal -> animal.getId_animal() == id_animal)
-                .findFirst()
-                .orElse(null);
+    public Animal findAnimalById(@PathVariable int id_animal) {
+        return anRepository.findById(id_animal).orElse(null);
     }
 
     // POST: Cria um novo animal
     @PostMapping
     public Animal createAnimal(@RequestBody Animal animal) {
-        listaAnimal.add(animal);
-        return animal;
+        return anRepository.save(animal);
     }
 
     // PUT: Atualiza um Animal existente
     @PutMapping("/{id_animal}")
     public Animal updateAnimal(@PathVariable int id_animal, @RequestBody Animal novoAnimal) {
-        Animal animalExistente = listaAnimal.stream()
-                .filter(Animal -> Animal.getId_animal() == id_animal)
-                .findFirst()
+        return anRepository.findById(id_animal)
+                .map(animalExistente -> {
+                    animalExistente.setNome(novoAnimal.getNome());
+                    animalExistente.setIdade(novoAnimal.getIdade());
+                    animalExistente.setRaca(novoAnimal.getRaca());
+                    animalExistente.setSexo(novoAnimal.getSexo());
+                    animalExistente.setEspecie(novoAnimal.getEspecie());
+                    animalExistente.setPorte(novoAnimal.getPorte());
+                    animalExistente.setDesc(novoAnimal.getDesc());
+                    animalExistente.setDisponivel(novoAnimal.isDisponivel());
+                    return anRepository.save(animalExistente);
+                })
                 .orElse(null);
-
-        if (animalExistente != null) {
-            animalExistente.setNome(novoAnimal.getNome());
-            animalExistente.setIdade(novoAnimal.getIdade());
-            animalExistente.setRaca(novoAnimal.getRaca());
-            animalExistente.setSexo(novoAnimal.getSexo());
-            animalExistente.setEspecie(novoAnimal.getEspecie());
-            animalExistente.setPorte(novoAnimal.getPorte());
-            animalExistente.setDesc(novoAnimal.getDesc());
-            animalExistente.setDisponivel(novoAnimal.isDisponivel());
-        }
-        return animalExistente;
     }
 
     // DELETE: Deleta um Animal
-    @DeleteMapping("/{id_Animal}")
+    @DeleteMapping("/{id_animal}")
     public void deleteAnimal(@PathVariable int id_animal) {
-        listaAnimal.removeIf(Animal -> Animal.getId_animal() == id_animal);
+        anRepository.deleteById(id_animal);
     }
 }

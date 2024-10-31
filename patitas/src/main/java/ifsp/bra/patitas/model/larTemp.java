@@ -7,9 +7,7 @@ public class larTemp extends Usuario{
     private String periodo;
     private String cpf;
     
-    public larTemp(){
-
-    }
+    public larTemp(){}
 
     public larTemp(Long id, String nome, String email, String telefone, String endereco, String desc, String periodo,
             String cpf) {
@@ -17,6 +15,9 @@ public class larTemp extends Usuario{
         this.periodo = periodo;
         this.cpf = cpf;
     }
+
+    @OneToMany(mappedBy = "larTemp", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Adocao> listaAdocao= new ArrayList<>();
 
     public String getPeriodo() {
         return periodo;

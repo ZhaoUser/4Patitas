@@ -7,9 +7,7 @@ public class Ong extends Usuario{
     private String cnpj;
     private String pix;
 
-    public Ong(){
-
-    }
+    public Ong(){}
 
     public Ong(Long id, String nome, String email, String telefone, String endereco, String desc, String cnpj,
             String pix) {
@@ -17,6 +15,9 @@ public class Ong extends Usuario{
         this.cnpj = cnpj;
         this.pix = pix;
     }
+
+    @OneToMany(mappedBy = "ong", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Adocao> listaAdocao= new ArrayList<>();
 
     public String getCnpj() {
         return cnpj;
