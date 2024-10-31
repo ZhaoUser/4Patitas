@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Animal {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_animal;
+    private Long id_animal;
     private String nome;
     private int idade;
     private String raca;
@@ -21,7 +21,7 @@ public class Animal {
 
     }
 
-    public Animal(int id_animal, String nome, int idade, String raca, String sexo, String especie, String porte, String desc,
+    public Animal(Long id_animal, String nome, int idade, String raca, String sexo, String especie, String porte, String desc,
             boolean disponivel) {
         this.id_animal = id_animal;
         this.nome = nome;
@@ -114,11 +114,11 @@ public class Animal {
         this.disponivel = disponivel;
     }
 
-    public int getId_animal() {
+    public Long getId_animal() {
         return id_animal;
     }
 
-    public void setId_animal(int id_animal) {
+    public void setId_animal(Long id_animal) {
         this.id_animal = id_animal;
     }
 

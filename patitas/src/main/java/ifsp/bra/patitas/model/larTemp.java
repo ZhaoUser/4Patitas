@@ -11,7 +11,7 @@ public class larTemp extends Usuario{
 
     }
 
-    public larTemp(int id, String nome, String email, String telefone, String endereco, String desc, String periodo,
+    public larTemp(Long id, String nome, String email, String telefone, String endereco, String desc, String periodo,
             String cpf) {
         super(id, nome, email, telefone, endereco, desc);
         this.periodo = periodo;

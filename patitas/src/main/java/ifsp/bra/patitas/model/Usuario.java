@@ -8,7 +8,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Usuario {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
@@ -19,7 +19,7 @@ public abstract class Usuario {
 
     }
     
-    public Usuario(int id, String nome, String email, String telefone, String endereco, String desc) {
+    public Usuario(Long id, String nome, String email, String telefone, String endereco, String desc) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -70,12 +70,12 @@ public abstract class Usuario {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

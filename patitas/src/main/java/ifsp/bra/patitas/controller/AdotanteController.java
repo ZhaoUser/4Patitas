@@ -3,6 +3,7 @@ package ifsp.bra.patitas.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,13 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ifsp.bra.patitas.model.Adotante;
+import ifsp.bra.patitas.repository.adotanteRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/adotante")
 public class AdotanteController {
     
+    @Autowired
+    adotanteRepository adRepository;
+
     private List<Adotante> listaAdotante = new ArrayList<>();
 
 
@@ -29,7 +33,7 @@ public class AdotanteController {
 
     // GET: Recupera um Adotante específico por ID
     @GetMapping("/{id}")
-    public Adotante getAdotanteById(@PathVariable int id) {
+    public Adotante findByAdotanteId(@PathVariable int id) {
         return listaAdotante.stream()
                 .filter(adotante -> adotante.getId() == id)
                 .findFirst()

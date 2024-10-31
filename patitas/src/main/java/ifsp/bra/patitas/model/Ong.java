@@ -11,7 +11,7 @@ public class Ong extends Usuario{
 
     }
 
-    public Ong(int id, String nome, String email, String telefone, String endereco, String desc, String cnpj,
+    public Ong(Long id, String nome, String email, String telefone, String endereco, String desc, String cnpj,
             String pix) {
         super(id, nome, email, telefone, endereco, desc);
         this.cnpj = cnpj;

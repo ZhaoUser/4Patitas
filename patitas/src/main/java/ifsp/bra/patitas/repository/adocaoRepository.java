@@ -1,8 +1,8 @@
 package ifsp.bra.patitas.repository;
-import ifsp.bra.patitas.model.Adotante;
+import ifsp.bra.patitas.model.Adocao;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public interface adotanteRepository extends CrudRepository<Adotante, Long>{
+public interface adocaoRepository extends CrudRepository<Adocao, Long>{
 }

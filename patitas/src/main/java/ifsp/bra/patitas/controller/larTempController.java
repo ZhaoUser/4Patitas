@@ -3,6 +3,7 @@ package ifsp.bra.patitas.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +12,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import ifsp.bra.patitas.model.larTemp;
+import ifsp.bra.patitas.repository.larTempRepository;
 
 @RestController
 @RequestMapping("/api/4Patitas/larTemp")
 public class larTempController {
     
     
+    @Autowired
+    larTempRepository larRepository;
+
     private List<larTemp> listaLarTemp = new ArrayList<>();
 
 
@@ -30,7 +34,7 @@ public class larTempController {
 
     // GET: Recupera um larTemp específico por ID
     @GetMapping("/{id}")
-    public larTemp getlarTempById(@PathVariable int id) {
+    public larTemp findBylarTempId(@PathVariable int id) {
         return listaLarTemp.stream()
                 .filter(larTemp -> larTemp.getId() == id)
                 .findFirst()
