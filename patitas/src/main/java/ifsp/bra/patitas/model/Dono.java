@@ -3,8 +3,10 @@ package ifsp.bra.patitas.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
+@Entity
 public abstract class Dono extends Usuario{
 
     //Cardinalidade Hibernate
