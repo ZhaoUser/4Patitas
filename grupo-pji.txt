@@ -1,6 +1,0 @@
-# Membros do grupo de PJI
-    Guilherme Quintana: Front-End
-    Maria Eduarda Matias: Quality Assurance
-    Sammy Zhao: Product-Owner
-    Sara Bacharel: Scrum Master
-    Willian Kinjo: Back-End
