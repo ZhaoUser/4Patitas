@@ -1,0 +1,64 @@
+/* Estilo geral do formulário */
+.formContainer {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: black;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+  color: white;
+}
+
+/* Título do formulário */
+h2 {
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Estilo dos campos de entrada e labels */
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formGroup input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Estilo do botão de envio */
+.button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #ff3131;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.button:hover {
+  background-color: #ff5757;
+}
+
+body {
+  background-image: url('/src/Img/cachorro1.jpg');
+  background-size: cover;
+}

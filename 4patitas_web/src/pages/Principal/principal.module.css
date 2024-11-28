@@ -1,0 +1,21 @@
+.imageContainer {
+    width: 200px; /* Ou a largura desejada */
+    height: 500px; /* Defina a altura desejada */
+    padding-right: 10px;
+    overflow: hidden; /* Para esconder partes da imagem que saem da div */
+    position: relative; /* Para posicionar a imagem */
+}
+.image {
+    width: 100%; /* Ocupar 100% da largura da div */
+    height: 100%; /* Ocupar 100% da altura da div */
+    object-fit: cover; /* Para manter a proporção da imagem e preencher a div */
+}
+
+.containerMap{
+    width: 400px; /* Ou a largura desejada */
+    height: 200px; /* Defina a altura desejada */
+    padding-right: 10px;
+    overflow: hidden; /* Para esconder partes da imagem que saem da div */
+    position: relative; /* Para posicionar a imagem */
+    
+}
